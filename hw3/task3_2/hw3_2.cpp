@@ -3,15 +3,22 @@
 
 using namespace std;
 
-int getLengthAndToLower(char *str)
+void toLower(char *str, int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        if ((str[i] >= 'A') && (str[i] <= 'Z'))
+        {
+            str[i] += 'z' - 'Z';
+        }
+    }
+}
+
+int getLength(char *str)
 {
     int size = 0;
     while ((str[size] != '\n') && (str[size] != '\0'))
     {
-        if ((str[size] >= 'A') && (str[size] <= 'Z'))
-        {
-            str[size] += 'z' - 'Z';
-        }
         size++;
     }
     return size;
@@ -50,8 +57,11 @@ int main()
     char *text1 = input(maxSize);
     char *text2 = input(maxSize);
 
-    int lenText1 = getLengthAndToLower(text1);
-    int lenText2 = getLengthAndToLower(text2);
+    int lenText1 = getLength(text1);
+    int lenText2 = getLength(text2);
+
+    toLower(text1, lenText1);
+    toLower(text2, lenText2);
 
     char resultTrue[] = "You can get the second line by rearranging the characters in the first line.";
     char resultFalse[] = "You can NOT get the second line by rearranging the characters in the first line.";
